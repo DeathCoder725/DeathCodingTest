@@ -1,0 +1,7 @@
+name: DeathCoding
+description: "code, Code, CODE"
+version: 1.0
+
+author: "DeathCoder"
+
+main: net.deathcoder.coding.DeathCodingPlugin

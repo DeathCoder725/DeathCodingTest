@@ -1,7 +1,11 @@
 package net.deathcoder.coding;
 
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.Sign;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -30,4 +34,13 @@ public class DeathHelper {
         return blocks;
     }
 
+    public static Sign getNextSign(final Sign sign) {
+        Block block = sign.getBlock().getRelative(BlockFace.WEST, 2);
+
+        if (block.getType().equals(Material.WALL_SIGN)) {
+            return (Sign) block.getState();
+        }
+
+        return null;
+    }
 }

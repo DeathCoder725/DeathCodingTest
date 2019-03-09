@@ -10,8 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import static net.deathcoder.coding.DeathHelper.getBlocks;
-import static net.deathcoder.coding.DeathHelper.isRightClick;
+import static net.deathcoder.coding.DeathHelper.*;
 
 public class PlayerListener implements Listener {
     private final DeathCodingPlugin plugin;
@@ -23,13 +22,17 @@ public class PlayerListener implements Listener {
 
         final Player player = event.getPlayer();
         final Block block = event.getClickedBlock();
-        final Sign signBlock = (Sign) block.getState();
+        Sign signBlock = (Sign) block.getState();
         final Location blockLoc = signBlock.getLocation();
 
+        do {
+            //run(signBlock);
+        } while ((signBlock = getNextSign(signBlock)) != null);
 
-        for (final Block fBlock : getBlocks(block, 2)) {
+        /* for (final Block fBlock : getBlocks(block, 2)) {
             if (fBlock.getType().equals(Material.WALL_SIGN) && !fBlock.getLocation().equals(blockLoc)) player.sendMessage("Я нашёл табличку! Координаты: " + fBlock.getLocation());
-        }
+        } */
+
     }
 
     public PlayerListener(final DeathCodingPlugin plugin) {

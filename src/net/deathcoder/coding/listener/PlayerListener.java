@@ -25,9 +25,13 @@ public class PlayerListener implements Listener {
         Sign signBlock = (Sign) block.getState();
         final Location blockLoc = signBlock.getLocation();
 
+        player.sendMessage("нашёл!");
+        int i = 0;
         do {
             //run(signBlock);
-        } while ((signBlock = getNextSign(signBlock)) != null);
+            player.sendMessage("нашёл!");
+            i += 2;
+        } while ((signBlock = getNextSign(signBlock, i)) != null);
 
         /* for (final Block fBlock : getBlocks(block, 2)) {
             if (fBlock.getType().equals(Material.WALL_SIGN) && !fBlock.getLocation().equals(blockLoc)) player.sendMessage("Я нашёл табличку! Координаты: " + fBlock.getLocation());

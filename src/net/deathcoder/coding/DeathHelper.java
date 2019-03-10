@@ -33,13 +33,23 @@ public class DeathHelper {
         return blocks;
     }
 
-    public static Sign getNextSign(final Sign sign, final int i) {
-        Block block = sign.getBlock().getRelative(BlockFace.WEST, i);
+    public static Sign getNextSign(final Sign sign) {
+        Block block = sign.getBlock().getRelative(BlockFace.WEST, 2);
 
         if (block.getType().equals(Material.WALL_SIGN)) {
             return (Sign) block.getState();
         }
 
         return null;
+    }
+
+    public static void runSign(final Sign sign) {
+        final String text = sign.getLine(1);
+        final Location loc = sign.getLocation();
+
+        if (text.equalsIgnoreCase("Молния")) {
+            loc.getWorld().strikeLightningEffect(loc);
+            return;
+        }
     }
 }

@@ -34,7 +34,20 @@ public class DeathHelper {
     }
 
     public static Sign getNextSign(final Sign sign) {
-        Block block = sign.getBlock().getRelative(BlockFace.WEST, 2);
+        Block signBlock = sign.getBlock();
+        byte data = signBlock.getData();
+        BlockFace blockFace = null;
+        if (data == 4) {
+            blockFace = BlockFace.SOUTH;
+        } else if (data == 2) {
+            blockFace = BlockFace.WEST;
+        } else if (data == 5) {
+            blockFace = BlockFace.NORTH;
+        } else if (data == 3) {
+            blockFace = BlockFace.EAST;
+        }
+
+        Block block = sign.getBlock().getRelative(blockFace, 2);
 
         if (block.getType().equals(Material.WALL_SIGN)) {
             return (Sign) block.getState();
